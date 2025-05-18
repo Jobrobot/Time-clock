@@ -11,8 +11,20 @@ body {
   display: grid;
   overflow: hidden;
   place-items: center;
-  background: #c4d2ef; /* Fallback for older browsers */
+  background: #c4d2ef;
   background: linear-gradient(-45deg, #c4d2ef, #dfe6f6);
+}
+
+.strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vmin;
+  padding: 2vmin 1vmin;
+  border-radius: 4vmin;
+  background: #e3eaf8;
+  box-shadow: inset -0.6vmin -0.6vmin 1.2vmin #ffffff,
+    inset 0.6vmin 0.6vmin 1.2vmin #b8c8e8;
 }
 
 .hr,
@@ -30,17 +42,23 @@ body {
   height: 8vmin;
   display: grid;
   place-items: center;
-  color: #f9fbfb;
-  transition: all 500ms 100ms ease;
-  border-radius: 50%;
-}
-.number.pop {
   color: #3e6ccb;
-  font-weight: bold;
-  transform: scale(1.3);
-  background-color: #dfe6f6;
-  box-shadow: -1vmin -1vmin -2vmin -0.5vmin #f9fbfd, 1vmin 1vmin 2vmin #a9bee8;
+  font-weight: 500;
+  background: transparent;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: none;
 }
+
+.number.pop {
+  background: #e3eaf8;
+  color: #3e6ccb;
+  font-weight: 600;
+  transform: scale(1.1);
+  box-shadow: inset -0.3vmin -0.3vmin 0.6vmin #ffffff,
+    inset 0.3vmin 0.3vmin 0.6vmin #b8c8e8, 0 0 2vmin rgba(0, 0, 0, 0.1);
+}
+
 .clock {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

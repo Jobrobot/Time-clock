@@ -1,38 +1,42 @@
-const strips = [...document.querySelectorAll(".strip")];
-const numberSize = 8;
+document.addEventListener("DOMContentLoaded", () => {
+  const strips = [...document.querySelectorAll(".strip")];
+  const numberSize = 9;
 
-function highlight(strip, d) {
-  strips[strip]
-    .querySelector(`.number:nth-of-type(${d + 1})`)
-    .classList.add("pop");
+  function highlight(strip, d) {
+    const stripElem = strips[strip];
+    if (!stripElem) return;
+    const numberElem = stripElem.querySelector(`.number:nth-of-type(${d + 1})`);
+    if (!numberElem) return;
+    numberElem.classList.add("pop");
 
-  setTimeout(() => {
-    strips[strip]
-      .querySelector(`.number:nth-of-type(${d + 1})`)
-      .classList.remove("pop");
-  }, 950);
-}
-
-function stripSplider(strip, number) {
-  let d1 = Math.floor(number / 10);
-  let d2 = number % 10;
-
-  strips[strip].style.transform = `translateY(${d1 * -numberSize}vmin)`;
-  highlight(strip, d1);
-  if (strip + 1 < strips.length) {
-    strips[strip + 1].style.transform = `translateY(${d2 * -numberSize}vmin)`;
-    highlight(strip + 1, d2);
+    setTimeout(() => {
+      numberElem.classList.remove("pop");
+    }, 950);
   }
-}
 
-setInterval(() => {
-  const time = new Date();
+  function stripSplider(strip, number) {
+    let d1 = Math.floor(number / 10);
+    let d2 = number % 10;
 
-  const hours = time.getHours();
-  const mins = time.getMinutes();
-  const secs = time.getSeconds();
+    if (strips[strip]) {
+      strips[strip].style.transform = `translateY(${d1 * -numberSize}vmin)`;
+      highlight(strip, d1);
+    }
+    if (strips[strip + 1]) {
+      strips[strip + 1].style.transform = `translateY(${d2 * -numberSize}vmin)`;
+      highlight(strip + 1, d2);
+    }
+  }
 
-  stripSplider(0, hours);
-  stripSplider(2, mins);
-  stripSplider(4, secs);
-}, 1000);
+  setInterval(() => {
+    const time = new Date();
+
+    const hours = time.getHours();
+    const mins = time.getMinutes();
+    const secs = time.getSeconds();
+
+    stripSplider(0, hours);
+    stripSplider(2, mins);
+    stripSplider(4, secs);
+  }, 1000);
+});
