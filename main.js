@@ -40,3 +40,28 @@ document.addEventListener("DOMContentLoaded", () => {
     stripSplider(4, secs);
   }, 1000);
 });
+
+let darkmode = localStorage.getItem("darkmode");
+const themeSwither = document.getElementById("theme-switch");
+
+const enableDarkmode = () => {
+  document.body.classList.add("darkmode");
+  localStorage.setItem("darkmode", "active"); // fixed: should be "active", not undefined variable
+};
+
+const disableDarkmode = () => {
+  document.body.classList.remove("darkmode");
+  localStorage.setItem("darkmode", "null"); // fixed: store string "null"
+};
+
+// Initialize theme based on stored preference
+if (darkmode === "active") {
+  enableDarkmode();
+} else {
+  disableDarkmode();
+}
+
+themeSwither.addEventListener("click", () => {
+  darkmode = localStorage.getItem("darkmode");
+  darkmode !== "active" ? enableDarkmode() : disableDarkmode();
+});

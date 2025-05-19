@@ -1,3 +1,13 @@
+:root {
+  --base-color: #c4d2ef;
+  --base-variant: #dfe6f6;
+  --text-color: #3e6ccb;
+  --box-shadow: #ffffff;
+  --shadow-variation: #b8c8e8;
+  --background: #e3eaf8;
+  --rgba: rgba(0, 0, 0, 0.1);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -12,7 +22,7 @@ body {
   overflow: hidden;
   place-items: center;
   background: #c4d2ef;
-  background: linear-gradient(-45deg, #c4d2ef, #dfe6f6);
+  background: linear-gradient(-45deg, var(--base-color), var(--base-variant));
 }
 
 .strip {
@@ -22,9 +32,9 @@ body {
   gap: 1vmin;
   padding: 2vmin 1vmin;
   border-radius: 4vmin;
-  background: #e3eaf8;
-  box-shadow: inset -0.6vmin -0.6vmin 1.2vmin #ffffff,
-    inset 0.6vmin 0.6vmin 1.2vmin #b8c8e8;
+  background: var(--background);
+  box-shadow: inset -0.6vmin -0.6vmin 1.2vmin var(--box-shadow),
+    inset 0.6vmin 0.6vmin 1.2vmin var(--shadow-variation);
 }
 
 .hr,
@@ -42,7 +52,7 @@ body {
   height: 8vmin;
   display: grid;
   place-items: center;
-  color: #3e6ccb;
+  color: var(--text-color);
   font-weight: 500;
   background: transparent;
   border-radius: 50%;
@@ -51,12 +61,12 @@ body {
 }
 
 .number.pop {
-  background: #e3eaf8;
-  color: #3e6ccb;
+  background: var(--background);
+  color: var(--text-color);
   font-weight: 600;
   transform: scale(1.1);
-  box-shadow: inset -0.3vmin -0.3vmin 0.6vmin #ffffff,
-    inset 0.3vmin 0.3vmin 0.6vmin #b8c8e8, 0 0 2vmin rgba(0, 0, 0, 0.1);
+  box-shadow: inset -0.3vmin -0.3vmin 0.6vmin var(--box-shadow),
+    inset 0.3vmin 0.3vmin 0.6vmin var(--shadow-variation), 0 0 2vmin var(--rgba);
 }
 
 .clock {
@@ -66,4 +76,43 @@ body {
   height: 4vmin;
   position: relative;
   padding: 0 4vmin;
+}
+
+.darkmode {
+  --base-color: #2e3136;
+  --base-variant: #303235;
+  --text-color: #3e6ccb;
+  --box-shadow: #00000038;
+  --shadow-variation: #2e323a;
+  --background: #2a2b2e;
+  --rgba: rgba(47, 97, 190, 0.315);
+}
+
+#theme-switch {
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-radius: 50%;
+  border-color: var(--text-color);
+  background-color: var(--base-color);
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+#theme-switch svg {
+  fill: var(--text-color);
+}
+
+#theme-switch svg:last-child {
+  display: none;
+}
+
+.darkmode #theme-switch svg:first-child {
+  display: none;
+}
+
+.darkmode #theme-switch svg:last-child {
+  display: block;
 }
